@@ -1,0 +1,28 @@
+{
+  "name": "miniboggingsite",
+  "version": "1.0.0",
+  "description": "this is backend for mini bloging",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ramverma1493/backend_projects.git"
+  },
+  "keywords": [
+    "bloging",
+    "technology"
+  ],
+  "author": "ramendra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ramverma1493/backend_projects/issues"
+  },
+  "homepage": "https://github.com/ramverma1493/backend_projects#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.4.1"
+  }
+}
