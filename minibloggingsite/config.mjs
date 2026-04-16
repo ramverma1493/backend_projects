@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
-dotenv.config
+dotenv.config()
 
 const uri = process.env.MongoDB
 const PORT = process.env.PORT
 
-export {uri, Port}
+export {uri, PORT}
