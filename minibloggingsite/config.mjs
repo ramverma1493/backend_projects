@@ -3,5 +3,6 @@ dotenv.config()
 
 const uri = process.env.MongoDB
 const PORT = process.env.PORT
+const SecretKey = process.env.SecretKey
 
-export {uri, PORT}
+export {uri, PORT, SecretKey}

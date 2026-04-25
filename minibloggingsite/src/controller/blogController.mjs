@@ -64,7 +64,7 @@ let getBlog = async (req, res) => {
 let updateBlog = async (req, res) => {
     try {
         let { blogId } = req.params
-        let { title, body, tags, subcategory } = req.body
+        let { title, body, tags, subcategory, category } = req.body
 
         if (!isValidObjectId(blogId)) {
             return res.status(400).send({ message: 'Invalid blogId' })
@@ -93,6 +93,7 @@ let updateBlog = async (req, res) => {
         let data = {}
         if (title) data.title = title
         if (body) data.body = body
+        if (category) data.category = category
         data.isPublished = true
 
         let updateObj = { $set: data }
