@@ -1,6 +1,7 @@
 import { authorModel } from '../models/authorModel.mjs'
 import jwt from 'jsonwebtoken'
 import { SecretKey} from '../../config.mjs'
+import bcrypt from 'bcrypt'
 
 const addAuthor = async (req, res) => {
     try {
@@ -8,6 +9,7 @@ const addAuthor = async (req, res) => {
         if (!data) {
             return res.status(400).send({ staus: 'false', message: 'data is required' })
         }
+        data.password = bcrypt.hashSync(data.password, 10)
         let author = (await authorModel.create(data)).populate('authorId')
         return res.status(201).send({ message: 'success', data: author })
     } catch (err) {
@@ -29,8 +31,12 @@ const loginAuthor = async (req, res) => {
         if(!email || !password){
             return res.status(400).send({message: 'email and password are required'})
         }
-        let author = await authorModel.findOne({email, password}).select('-password')
+        let author = await authorModel.findOne({email})
         if(!author){
+            return res.status(401).send({message: 'Invalid email or password'})
+        }
+        let isPasswordValid = bcrypt.compareSync(password, author.password)
+        if (!isPasswordValid) {
             return res.status(401).send({message: 'Invalid email or password'})
         }
         let token = jwt.sign({authorId: author._id, email: author.email}, 
